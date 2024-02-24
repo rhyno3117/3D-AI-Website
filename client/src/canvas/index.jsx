@@ -1,7 +1,16 @@
+import { Canvas } from '@react-three/fiber'
+import { Enviornment, Center } from '@react-three/drei'  
 
-const Canvas = () => {
+import Shirt from './Shirt';
+import Backdrop from './Backdrop';
+import CameraRig from './CameraRig';
+
+
+const CanvasModel = () => {
   return (
-    <div>Canvas</div>
+    <Canvas>
+
+    </Canvas>
   )
 }
 

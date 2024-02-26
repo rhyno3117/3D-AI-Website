@@ -5,8 +5,18 @@ import { useSnapshot } from 'valtio'
 import state from '../store';
 
 const ColorPicker = () => {
+  const snap = useSnapshot(state);
   return (
-    <div>ColorPicker</div>
+    <div
+      className='absolute left-full ml-3'>
+      <SketchPicker
+        color={snap.color}
+        disableAlpha
+        // presetColors={['#000000', '#000000', '#000000', '#000000']}   to set to any colors of choosing
+        onChange={(color) => state.color = color.hex}
+      />
+
+    </div>
   )
 }
 

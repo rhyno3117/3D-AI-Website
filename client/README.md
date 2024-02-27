@@ -1,8 +1,28 @@
-# React + Vite
+# 3D Shirt Designer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a project I made to help better my skills with new technologies.
 
-Currently, two official plugins are available:
+# Features
+User-friendly Interface: The application provides a clean and intuitive interface for custoizing a t-shirt.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Upload custom images or logos for the user customization.
+
+Use AI to to help customize.
+
+# How to Use
+1. Open the web page in your preferred web browser.
+
+2. Click on the "Customize It" button 
+
+3. The tabs on the left of the screen will let the user be able to change the color of the shirt, Upload a file/image which can display as a small logo on the shirt or cover the shirt, and use AI to display anything on the shirt.
+
+4. On the bottom of the screen there are 2 option where the user can see the different styles of their logo on the shirt.
+
+# Technologies Used
+React
+Node.js
+Vite
+Tailwind
+HTML
+Front-End
+Back-End

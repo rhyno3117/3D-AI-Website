@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-import CustomButton from './CustomButton'
+import CustomButton from './CustomButton';
 
-const FilePicker = ({ file, setFile, readFile }) => {
+const FilePicker = ({ file, setFile, readFile, toggleTabContentVisibility }) => {
   return (
     <div className="filepicker-container">
       <div className="flex-1 flex flex-col">
@@ -16,7 +16,7 @@ const FilePicker = ({ file, setFile, readFile }) => {
           <span className="text-black">Upload File</span>
         </label>
 
-        <p className="mt-2 'text-black text-opacity-75' text-xs truncate">
+        <p className="mt-2 text-black text-opacity-75 text-xs truncate">
           {file === '' ? "No file selected" : file.name}
         </p>
       </div>
@@ -25,18 +25,26 @@ const FilePicker = ({ file, setFile, readFile }) => {
         <CustomButton 
           type="outline"
           title="Logo"
-          handleClick={() => readFile('logo')}
+          handleClick={() => {
+            // Pass false to indicate that the tab content should not be hidden
+            toggleTabContentVisibility(false);
+            readFile('logo');
+          }}
           customStyles="text-xs"
         />
         <CustomButton 
           type="filled"
           title="Full"
-          handleClick={() => readFile('full')}
+          handleClick={() => {
+            // Pass false to indicate that the tab content should not be hidden
+            toggleTabContentVisibility(false);
+            readFile('full');
+          }}
           customStyles="text-xs"
         />
       </div>
     </div>
-  )
+  );
 }
 
-export default FilePicker
+export default FilePicker;

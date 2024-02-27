@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useSnapshot } from 'valtio';
+
 import config from '../config/config';
 import state from '../store';
 import { download } from '../assets';
@@ -11,54 +12,43 @@ import { AIPicker, ColorPicker, CustomButton, FilePicker, Tab } from '../compone
 
 const Customizer = () => {
   const snap = useSnapshot(state);
+
   const [file, setFile] = useState('');
+
   const [prompt, setPrompt] = useState('');
   const [generatingImg, setGeneratingImg] = useState(false);
+
   const [activeEditorTab, setActiveEditorTab] = useState("");
   const [activeFilterTab, setActiveFilterTab] = useState({
     logoShirt: true,
     stylishShirt: false,
-  });
+  })
 
-  const [isTabContentVisible, setIsTabContentVisible] = useState(true);
-
-  useEffect(() => {
-    // Reset the tab content visibility when a tab is clicked
-    setIsTabContentVisible(true);
-  }, [activeEditorTab]);
-
+  // show tab content depending on the activeTab
   const generateTabContent = () => {
-    if (!isTabContentVisible) {
-      return null;
-    }
-
     switch (activeEditorTab) {
       case "colorpicker":
-        return <ColorPicker />;
+        return <ColorPicker />
       case "filepicker":
         return <FilePicker
           file={file}
           setFile={setFile}
           readFile={readFile}
-        />;
+        />
       case "aipicker":
-        return <AIPicker
+        return <AIPicker 
           prompt={prompt}
           setPrompt={setPrompt}
           generatingImg={generatingImg}
           handleSubmit={handleSubmit}
-        />;
+        />
       default:
         return null;
     }
-  };
-
-  const toggleTabContentVisibility = () => {
-    setIsTabContentVisible((prev) => !prev);
-  };
+  }
 
   const handleSubmit = async (type) => {
-    if (!prompt) return alert("Please enter a prompt");
+    if(!prompt) return alert("Please enter a prompt");
 
     try {
       setGeneratingImg(true);
@@ -71,7 +61,7 @@ const Customizer = () => {
         body: JSON.stringify({
           prompt,
         })
-      });
+      })
 
       const data = await response.json();
 
@@ -81,31 +71,26 @@ const Customizer = () => {
     } finally {
       setGeneratingImg(false);
       setActiveEditorTab("");
-      toggleTabContentVisibility();
     }
-  };
+  }
 
   const handleDecals = (type, result) => {
     const decalType = DecalTypes[type];
-  
-    // Check if the corresponding filter tab is active
-    if (activeFilterTab[decalType.filterTab]) {
-      state[decalType.stateProperty] = result;
+
+    state[decalType.stateProperty] = result;
+
+    if(!activeFilterTab[decalType.filterTab]) {
+      handleActiveFilterTab(decalType.filterTab)
     }
-  
-    if (!activeFilterTab[decalType.filterTab]) {
-      handleActiveFilterTab(decalType.filterTab);
-    }
-  };
-  
+  }
 
   const handleActiveFilterTab = (tabName) => {
     switch (tabName) {
       case "logoShirt":
-        state.isLogoTexture = !activeFilterTab[tabName];
+          state.isLogoTexture = !activeFilterTab[tabName];
         break;
       case "stylishShirt":
-        state.isFullTexture = !activeFilterTab[tabName];
+          state.isFullTexture = !activeFilterTab[tabName];
         break;
       default:
         state.isLogoTexture = true;
@@ -121,7 +106,7 @@ const Customizer = () => {
         [tabName]: !prevState[tabName]
       }
     })
-  };
+  }
 
   const readFile = (type) => {
     reader(file)
@@ -129,7 +114,7 @@ const Customizer = () => {
         handleDecals(type, result);
         setActiveEditorTab("");
       })
-  };
+  }
 
   return (
     <AnimatePresence>
@@ -143,13 +128,10 @@ const Customizer = () => {
             <div className="flex items-center min-h-screen">
               <div className="editortabs-container tabs">
                 {EditorTabs.map((tab) => (
-                  <Tab
+                  <Tab 
                     key={tab.name}
                     tab={tab}
-                    handleClick={() => {
-                      setActiveEditorTab(tab.name);
-                      toggleTabContentVisibility();
-                    }}
+                    handleClick={() => setActiveEditorTab(tab.name)}
                   />
                 ))}
 
@@ -163,9 +145,10 @@ const Customizer = () => {
             {...fadeAnimation}
           >
             <CustomButton 
+              type="filled"
               title="Go Back"
               handleClick={() => state.intro = true}
-              customStyles="w-fit px-4 py-2.5 font-bold text-sm bg-white"
+              customStyles="w-fit px-4 py-2.5 font-bold text-sm"
             />
           </motion.div>
 
@@ -186,7 +169,7 @@ const Customizer = () => {
         </>
       )}
     </AnimatePresence>
-  );
-};
+  )
+}
 
-export default Customizer;
+export default Customizer

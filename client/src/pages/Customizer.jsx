@@ -49,6 +49,7 @@ const Customizer = () => {
 
   const handleSubmit = async (type) => {
     if(!prompt) return alert("Please enter a prompt");
+
     try {
       setGeneratingImg(true);
 
@@ -144,10 +145,10 @@ const Customizer = () => {
             {...fadeAnimation}
           >
             <CustomButton 
-              type="filled"
+              // type="filled"
               title="Go Back"
               handleClick={() => state.intro = true}
-              customStyles="w-fit px-4 py-2.5 font-bold text-sm"
+              customStyles="w-fit px-4 py-2.5 font-bold text-sm bg-white"
             />
           </motion.div>
 

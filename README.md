@@ -1,13 +1,12 @@
 # 3D Shirt Designer
 
-This is a project I made to help better my skills with new technologies.
+This is a project I made to help better my skills with new technologies. The AI functionality for this project is not functional during this time.
 
 # Features
-User-friendly Interface: The application provides a clean and intuitive interface for custoizing a t-shirt.
+The application provides a clean and intuitive interface for custoizing a t-shirt.
 
 Upload custom images or logos for the user customization.
 
-The AI function of this app is currently not working due to funding the AI. It should all be set up in the future for me to add this function. 
 # How to Use
 1. Open the web page in your preferred web browser.
 
